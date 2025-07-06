@@ -1,6 +1,6 @@
 
 int MY_DELAY=500;
-int PIN_NUM=4;
+int PIN_NUM=13;
 void setup() {
   // initialize digital pin LED as an output.
   pinMode(PIN_NUM, OUTPUT);

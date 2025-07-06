@@ -38,6 +38,7 @@
 
 ## even shorter blink
 - delay() is limited to 1 ms. Find a function that delays 1 microsecond. 
+delayMicroseconds
  - Try different delays and measure the overhead.
  - Take screenshots and add them to the README below.
 for 1 microsecond i got the same overhead as previously described
