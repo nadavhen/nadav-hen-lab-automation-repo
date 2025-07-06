@@ -22,7 +22,7 @@ for (int i = 0; i< 10000; i++){
 }
 ```
 - test if lighting led still works. Why or why not?
-answer here: __________
+answer here: The light doesnt work since the loop takes a long time to reiterate because of the claculation. if i would to press in the beggining of the loop then the light would be on for the entire calculation. this happens because our program is a loop.
 
 ## Use interrupt to light led
 - Add code to create an interrupt pin (why can't it be the button pin?). Use a variable for this.
