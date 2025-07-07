@@ -25,6 +25,6 @@ the call back is to turn off the light and it called when the timer is done.
 - check that although the delay of 1 second is still in the loop function, the LED now turns off after 5 seconds
 
 - change the LED time ON from 5 seconds to 30 ms, measure in the scope the time the LED is ON. is it 30 ms? Why or why not?
-answer here: its close but not since there is a bit of latancy from the moment we set and start the timer and also from the moment it goes to the function thes all result in ~50ms delay rather than a the wanted 30ms. also the pressing is a bit longer so it can influence th trigger of the light wich can cause it to shine a bit longer.
+answer here: its close but not since there is a bit of latancy from the moment we set and start the timer and also from the moment it goes to the function thes all result in 170microseconds og latancy 
 paste a screen shot from the scope below:
 ![alt text](6_3.PNG)

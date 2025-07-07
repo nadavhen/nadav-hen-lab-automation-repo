@@ -7,7 +7,6 @@ volatile unsigned long lastInterruptTime = 0; // Timestamp of the last interrupt
 
 void handleInterrupt() {
   digitalWrite(LED_PIN, HIGH); // Turn the LED on
-  Serial.println("Button pressed: LED ON");
   lastInterruptTime = millis(); // Get the current time
 }
 

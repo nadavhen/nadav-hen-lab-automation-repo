@@ -9,9 +9,9 @@ volatile unsigned long lastInterruptTime = 0; // Timestamp of the last interrupt
 
 // Interrupt service routine (ISR) to handle button press
 void handleInterrupt() {
+  MsTimer2::start();
   digitalWrite(LED_PIN, HIGH); // Turn the LED on
-  Serial.println("Button pressed: LED ON"); // Print a message to the Serial Monitor
-  MsTimer2::start(); // Start the timer to turn off the LED after a specified period
+   // Start the timer to turn off the LED after a specified period
 }
 
 // Function to turn off the LED (called by the timer)
