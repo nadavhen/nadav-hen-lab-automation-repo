@@ -8,7 +8,7 @@ volatile unsigned long lastInterruptTime = 0; // Timestamp of the last interrupt
 void handleInterrupt() {
   // Interrupt service routine (ISR)
   unsigned long currentTime = millis(); // Get the current time
-  if (currentTime - lastInterruptTime > 50) { // Check if 50ms have passed since the last interrupt
+  if (currentTime - lastInterruptTime > 10) { // Check if 50ms have passed since the last interrupt
     buttonPressed = digitalRead(BUTTON_PIN); // Read the button state directly
     if (buttonPressed) {
       digitalWrite(LED_PIN, HIGH); // Turn the LED on
