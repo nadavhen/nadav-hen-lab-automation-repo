@@ -17,6 +17,7 @@ void handleInterrupt() {
 // Function to turn off the LED (called by the timer)
 void turn_off_light() {
   digitalWrite(LED_PIN, LOW); // Turn the LED off
+  MsTimer2::stop();
 }
 
 void setup() {
