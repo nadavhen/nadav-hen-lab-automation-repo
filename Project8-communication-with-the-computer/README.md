@@ -11,7 +11,7 @@
 
 1. Develop an Arduino sketch (C++ code) that interacts with a device over a serial port.
 2. The sketch should continuously monitor the serial port for incoming data.
-3. When data is available, the sketch should read a number of unknown length from the serial port. **There are two main options: you can send a newline at the end of hte number and arduino waits for the new line. This means that also your python code will have to add a newline to its command. Alternatively, the number will not be terminated by a specific character, so configure the serial monitor accordingly**. 
+3. When data is available, the sketch should read a number of unknown length from the serial port. **There are two main options: you can send a newline at the end of the number and arduino waits for the new line. This means that also your python code will have to add a newline to its command. Alternatively, the number will not be terminated by a specific character, so configure the serial monitor accordingly**. 
 This number is the time in milliseconds that the LED on the device should light up when a button is pressed.
 4. After reading the number, the sketch should print a message to the serial port stating "I received: " followed by the number.
 5. The sketch should then use the received number to set a timer using the MsTimer2 library. The timer should be set to the received number plus one ms (if this bug was seen in project6).
@@ -23,7 +23,7 @@ This number is the time in milliseconds that the LED on the device should light 
 
 ## Python environments
 Before using Python, set up the environment. In the course we use Conda, another option is to use `.venv`.
-To set up conda using the Anaconda Prompt:
+To set up conda using the Anaconda Prompt:  
 ```
 conda config --set ssl_verify false
 conda create --name intro python=3.11
@@ -31,7 +31,7 @@ conda activate intro
 ```
 And after that you can install packages using 
 `pip install <package-name>`
-
+    
 In VSCode, chosse the interpreter in `intro` environment of folder.
 
 **Requirements: Python side**
