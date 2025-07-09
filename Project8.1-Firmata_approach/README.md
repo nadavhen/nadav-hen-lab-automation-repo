@@ -19,23 +19,27 @@
 5. use threading.Timer (from the threading python package) to turn off the led. This will allow the script to perform other tasks while waiting for the button press. This version of the script should be named Reacting_button_press_pymata4_using_timer.py.
 6. Add a Graphical User Interface (GUI) to the timer version of the script. The GUI should display the state of the button (pressed or not pressed) and any actions performed in response to the button press. plus, it should have a textbox input to accept different time intervals for the timer.
 7. light the led for 30 ms. Measure in scopy the length of the led light a 5-10 times and measure the average and standard deviation. Compare to previous arduino and non firmata python code.
+in this version the aveage time was 43.88ms whci are more than the 30ms reactions we got from previous versions 
 8. Include comments explaining the functionality of each part of the code.
 9. Write the script in a clean, organized, and efficient manner following good programming practices.
 
 
 ## Exercises
 Paste a screenshot of the GUI here:
+![alt text](811.PNG)
 
 Paste a screenshot of the logic analyzer here that presents the time the LED is ON when pressing the button.
-
+![alt text](812.PNG)
 ```
 What is the difference between the two versions (with pymata4 and firmata and without) of the script? Which one was easier to code? Where was thread handling easier?
 
-Answer: __________
+Answer: the difference between the two versions that in the pymata we control the arduino with the python itself and the code that loaded on it is only to enable the control. the previous version we loaded a code that performed all we wanted and only communicated with the python. in the pymata the threading was easier since I dont have to read the monitor all the time to acctually interact with the device.
 
 
 What can you say about the accuracy of the timing between the firmata version and your arduino code version?
 which one is more accurate and why?
+
+the arduino version is more accurate where the pymata version had inconsistent latency. the reason is that the arduino version 
 
 What are the advantages and disadvantages of using the pymata4 package?
 

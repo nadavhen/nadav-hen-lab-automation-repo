@@ -14,6 +14,10 @@ LED_PIN = 4     # Pin connected to the LED
 led_timer = None  # Initialize the timer as None
 timer_interval_ms = 2000  # Default timer interval in milliseconds
 
+# Debounce variables
+last_button_press_time = 0  # Timestamp of the last valid button press
+debounce_delay_ms = 10  # Debounce delay in milliseconds
+
 # GUI Layout
 layout = [
     [sg.Text("Button State:"), sg.Text("Not Pressed", key="-BUTTON_STATE-", size=(15, 1))],  # Display button state
@@ -32,16 +36,27 @@ def turn_off_led():
     This function is called by the timer after the specified interval.
     """
     board.digital_write(LED_PIN, 0)  # Turn off the LED
-    window["-LOG-"].print("LED turned off by timer.")  # Log the action in the GUI
+    window.write_event_value("-TIMER_DONE-", "LED turned off by timer.")  # Send event to GUI thread
 
 def button_press(data):
     """
     Callback function triggered when the button state changes.
     Handles turning on the LED and starting the timer to turn it off.
+    Implements debouncing to avoid rapid, repeated triggers.
     """
-    global led_timer  # Access the global timer variable
+    global led_timer, last_button_press_time  # Access global variables
     pin = data[1]  # Pin number (not used here but part of the callback data)
     value = data[2]  # Button state: 1 for pressed, 0 for released
+
+    # Get the current time in milliseconds
+    current_time = int(time.time() * 1000)
+
+    # Debounce logic: Ignore button presses within the debounce delay
+    if current_time - last_button_press_time < debounce_delay_ms:
+        return  # Ignore this button press as it is within the debounce delay
+
+    # Update the last button press time
+    last_button_press_time = current_time
 
     if value == 1:  # Button pressed
         window["-BUTTON_STATE-"].update("Pressed")  # Update button state in the GUI
@@ -78,6 +93,8 @@ try:
             except ValueError:
                 # Handle invalid input
                 window["-LOG-"].print("Invalid timer interval. Please enter a valid number.")
+        elif event == "-TIMER_DONE-":  # Handle timer completion event
+            window["-LOG-"].print(values[event])  # Log the timer completion message
 
         time.sleep(0.1)  # Keep the program running without consuming too much CPU
 except KeyboardInterrupt:
