@@ -9,18 +9,19 @@ unsigned long ledDuration = 30; // Default duration for the LED to stay on (in m
 
 // Interrupt service routine (ISR) to handle button press
 void handleInterrupt() {
-  MsTimer2::start();
-  digitalWrite(LED_PIN, HIGH); // Turn the LED on
-  buttonPressed = true; // Set the flag to indicate the button was pressed
   Serial.println("1"); // Print "1" to the Serial Monitor when the button is pressed
+  buttonPressed = true;
+  digitalWrite(LED_PIN, HIGH); // Turn the LED on
+  MsTimer2::start();
+   // Set the flag to indicate the button was pressed
   // Start the timer to turn off the LED after the specified period
 }
 
 // Function to turn off the LED (called by the timer)
 void turn_off_light() {
   digitalWrite(LED_PIN, LOW); // Turn the LED off
-  MsTimer2::stop();
-  buttonPressed = false; // Reset the button pressed flag
+  MsTimer2::stop(); // Reset the button pressed flag
+  Serial.println("0");
 }
 
 void setup() {
@@ -44,10 +45,9 @@ void loop() {
   // Check if data is available on the serial port
   if (buttonPressed) {
     Serial.println("2"); // Print "2" to the Serial Monitor when the LED is turned on
+    buttonPressed = false; // Reset the flag after printing
   }
-  else {
-    Serial.println("0"); // Print "0" to the Serial Monitor when the LED is off
-  }
+
   if (Serial.available() > 0) {
     // Read the incoming data as a string
     String input = Serial.readStringUntil('\n'); // Wait for a newline character

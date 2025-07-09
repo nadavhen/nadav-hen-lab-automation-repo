@@ -1,7 +1,6 @@
 import serial
 import threading
-import tkinter as tk
-from tkinter import scrolledtext
+import FreeSimpleGUI as sg
 
 class SerialComm:
     def __init__(self, port, baudrate):
@@ -16,46 +15,47 @@ class SerialComm:
         return self.serial_connection.readline().decode().strip()
 
 def create_gui(serial_comm):
-    def send_data():
-        number = input_field.get()
-        if number.isdigit():
-            serial_comm.send_data(number)
-            output_area.insert(tk.END, f"Sent: {number}\n")
-        else:
-            output_area.insert(tk.END, "Please enter a valid number.\n")
-
     def read_serial():
         while True:
             try:
                 response = serial_comm.read_response()
                 if response:
-                    output_area.insert(tk.END, f"{response}\n")
+                    window.write_event_value('-RESPONSE-', response)
             except Exception as e:
-                output_area.insert(tk.END, f"Error: {e}\n")
+                window.write_event_value('-ERROR-', str(e))
                 break
 
     # Start a thread to continuously read from the serial port
     threading.Thread(target=read_serial, daemon=True).start()
 
-    # Create the main window
-    root = tk.Tk()
-    root.title("Serial Communication GUI")
+    # Define the layout
+    layout = [
+        [sg.Text("Enter a number:"), sg.Input(key='-INPUT-', size=(20, 1))],
+        [sg.Button("Send", key='-SEND-')],
+        [sg.Multiline(size=(50, 10), key='-OUTPUT-', disabled=True)]
+    ]
 
-    # Input field
-    tk.Label(root, text="Enter a number:").pack()
-    input_field = tk.Entry(root)
-    input_field.pack()
+    # Create the window
+    window = sg.Window("Serial Communication GUI", layout)
 
-    # Send button
-    send_button = tk.Button(root, text="Send", command=send_data)
-    send_button.pack()
+    # Event loop
+    while True:
+        event, values = window.read()
+        if event == sg.WINDOW_CLOSED:
+            break
+        elif event == '-SEND-':
+            number = values['-INPUT-']
+            if number.isdigit():
+                serial_comm.send_data(number)
+                window['-OUTPUT-'].print(f"Sent: {number}")
+            else:
+                window['-OUTPUT-'].print("Please enter a valid number.")
+        elif event == '-RESPONSE-':
+            window['-OUTPUT-'].print(values['-RESPONSE-'])
+        elif event == '-ERROR-':
+            window['-OUTPUT-'].print(f"Error: {values['-ERROR-']}")
 
-    # Output area
-    output_area = scrolledtext.ScrolledText(root, width=50, height=10)
-    output_area.pack()
-
-    # Start the GUI event loop
-    root.mainloop()
+    window.close()
 
 def main():
     # Initialize serial communication

@@ -31,7 +31,7 @@ conda activate intro
 ```
 And after that you can install packages using 
 `pip install <package-name>`
-    
+
 In VSCode, chosse the interpreter in `intro` environment of folder.
 
 **Requirements: Python side**
@@ -52,5 +52,7 @@ In VSCode, chosse the interpreter in `intro` environment of folder.
 
 ## Exercises
 Paste a screenshot of the GUI here:
-
+![alt text](ex8_gui.PNG)
 Paste a screenshot of the logic analyzer here that presents the time the LED is ON when pressing the button.
+this was done in 500ms lighting duration
+![alt text](ex8_scope.PNG)
