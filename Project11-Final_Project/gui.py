@@ -2,7 +2,7 @@ import serial
 import threading
 import csv
 from datetime import datetime
-import PySimpleGUI as sg
+import FreeSimpleGUI as sg
 import matplotlib.pyplot as plt
 import pandas as pd
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
@@ -89,8 +89,8 @@ def create_gui(serial_comm):
     # Define the layout
     layout = [
         [sg.Canvas(key='-CANVAS-')],
-        [sg.Text("Current Angle: N/A", key='-ANGLE-', size=(400, 1), text_color="black", background_color="white"),
-         sg.Text("Buzzer State: N/A", key='-BUZZER-', size=(400, 1), text_color="black", background_color="white")]
+        [sg.Text("Current Angle: N/A", key='-ANGLE-', size=(20, 1), text_color="black", background_color="white", font=("Helvetica", 14)),
+         sg.Text("Buzzer State: N/A", key='-BUZZER-', size=(20, 1), text_color="black", background_color="white", font=("Helvetica", 14))]
     ]
 
     # Create the window with a white background
