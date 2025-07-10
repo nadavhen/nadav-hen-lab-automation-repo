@@ -23,8 +23,10 @@ Build a system that:
 3. if the angle exceeds a certain threshold, the buzzer should sound and the fan should stop. when returning to a valid angle, the buzzer should stop sounding and the fan should start again.
 4. log the time since program start, the angle (in degrees) and the buzzer state in a csv file (where should this be done, from the Arduino or the Python code?).
 4. Record a video of the system and add to the README below (by dragging it in while pressing the `shift` key).
+<video controls src="fan_video.mp4" title="Title"></video>
 5. develop a GUI that displays the angle in a graph or compass and the buzzer state as a LED in real-time and logs the data in a csv file.
 6. Record a new video that also shows the GUI and add to the readme below
+<video controls src="gui_video.mp4" title="Title"></video>
 7. Make sure to handle possible errors
 8. Use good programming practices:
     - Document the code (first line in file, functions, loops, code blocks)
